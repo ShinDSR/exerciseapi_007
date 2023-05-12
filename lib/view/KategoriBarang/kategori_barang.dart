@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_api01/controller/kategori_barang_controller.dart';
 import 'package:project_api01/model/kategori_barang_model.dart';
 import 'package:project_api01/view/KategoriBarang/add_kategori_barang.dart';
+import 'package:project_api01/view/KategoriBarang/edit_kategori_barang.dart';
 
 class KategoriBarang extends StatefulWidget {
   const KategoriBarang({super.key});
@@ -45,7 +46,7 @@ class _KategoriBarangState extends State<KategoriBarang> {
                 title: Text(listKategoriBarang[index].nama),
                 trailing: IconButton(
                   onPressed: () {
-                    
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const EditKategoriBarang(),));
                   },
                   icon: const Icon(Icons.edit),
                 ),

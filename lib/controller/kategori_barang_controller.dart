@@ -40,7 +40,18 @@ class KategoriBarangController{
     if(result.statusCode == 200){
       return jsonDecode(result.body);
     }else{
-      throw Exception('Gagal mengubah data kategori barang');
+      throw Exception('Gagal mengedit data kategori barang');
+    }
+  }
+
+  Future deleteKategoriBarang(KategoriBarangModel kategoriBarang) async{
+    var result = await http.post(Uri.parse("${apiUrl}barang/delete/{id}"), body: {
+      "nama_kategori_barang" : kategoriBarang.nama,
+    });
+    if(result.statusCode == 200){
+      return jsonDecode(result.body);
+    }else{
+      throw Exception('Gagal menghapus data ategori barang');
     }
   }
 }
