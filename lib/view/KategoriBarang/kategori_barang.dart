@@ -20,6 +20,7 @@ class _KategoriBarangState extends State<KategoriBarang> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getKategoriBarang();
   }
 
   void getKategoriBarang() async{

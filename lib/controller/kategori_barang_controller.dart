@@ -7,7 +7,7 @@ class KategoriBarangController{
   final String apiUrl = "http://10.0.2.2:8000/api/";
 
   Future<List<KategoriBarangModel>> getKategoriBarang() async {
-    var result = await http.get(Uri.parse("${apiUrl}barang/get/getAllKB"));
+    var result = await http.get(Uri.parse("${apiUrl}barang/getAllKB"));
     if(result.statusCode == 200){
       var data = json.decode(result.body);
       List<KategoriBarangModel> kategoriBarang = [];
