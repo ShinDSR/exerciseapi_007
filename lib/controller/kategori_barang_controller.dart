@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:http/http.dart' as http;
 import 'package:project_api01/model/kategori_barang_model.dart';
@@ -7,7 +8,7 @@ class KategoriBarangController{
   final String apiUrl = "http://10.0.2.2:8000/api/";
 
   Future<List<KategoriBarangModel>> getKategoriBarang() async {
-    var result = await http.get(Uri.parse("${apiUrl}barang/getAllKB"));
+    var result = await http.get(Uri.parse("${apiUrl}barang/getAllKB/"));
     if(result.statusCode == 200){
       var data = json.decode(result.body);
       List<KategoriBarangModel> kategoriBarang = [];
@@ -22,13 +23,24 @@ class KategoriBarangController{
   }
 
   Future addKategoriBarang(KategoriBarangModel kategoriBarang) async{
-    var result = await http.post(Uri.parse("${apiUrl}barang/addKB"), body: {
+    var result = await http.post(Uri.parse("${apiUrl}barang/addKB/"), body: {
       "nama_kategori_barang" : kategoriBarang.nama,
     });
     if(result.statusCode == 200){
       return jsonDecode(result.body);
     }else{
       throw Exception('Gagal meenambahkan data kategori barang');
+    }
+  }
+
+  Future editKategoriBarang(KategoriBarangModel kategoriBarang) async{
+    var result = await http.post(Uri.parse("${apiUrl}barang/update/{id}"), body: {
+      "nama_kategori_barang" : kategoriBarang.nama,
+    });
+    if(result.statusCode == 200){
+      return jsonDecode(result.body);
+    }else{
+      throw Exception('Gagal mengubah data kategori barang');
     }
   }
 }

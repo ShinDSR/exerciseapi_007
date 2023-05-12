@@ -44,7 +44,9 @@ class _KategoriBarangState extends State<KategoriBarang> {
               child: ListTile(
                 title: Text(listKategoriBarang[index].nama),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                   icon: const Icon(Icons.edit),
                 ),
               ),
