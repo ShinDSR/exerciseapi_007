@@ -6,7 +6,10 @@ import 'package:project_api01/model/kategori_barang_model.dart';
 import 'package:project_api01/view/KategoriBarang/kategori_barang.dart';
 
 class EditKategoriBarang extends StatefulWidget {
-  const EditKategoriBarang({super.key});
+  const EditKategoriBarang({super.key, this.id, this.kategoriNama1});
+
+  final int? id;
+  final String? kategoriNama1;
 
   @override
   State<EditKategoriBarang> createState() => _EditKategoriBarangState();
@@ -47,6 +50,7 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
                 }
                 return null;
               },
+              initialValue: widget.kategoriNama1,
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(

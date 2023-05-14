@@ -29,7 +29,7 @@ class KategoriBarangModel {
   factory KategoriBarangModel.fromMap(Map<String, dynamic> map) {
     return KategoriBarangModel(
       nama: map['nama_kategori_barang'] ?? '',
-      id: map['id_kategori_barang'] ?? 0
+      id: map['id_kategori_barang']?.toInt() ?? 0,
     );
   }
 
