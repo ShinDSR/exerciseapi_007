@@ -64,7 +64,7 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
                           builder: (context) => const KategoriBarang()));
 
                   var snackBar =
-                      const SnackBar(content: Text('Data Berhasil Disimpan'));
+                      const SnackBar(content: Text('Data Berhasil Diedit'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },

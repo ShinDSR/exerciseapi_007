@@ -33,14 +33,19 @@ class KategoriBarangController{
     }
   }
 
-  Future editKategoriBarang(KategoriBarangModel kategoriBarang) async{
-    var result = await http.post(Uri.parse("${apiUrl}barang/update/{id}"), body: {
-      "nama_kategori_barang" : kategoriBarang.nama,
-    });
-    if(result.statusCode == 200){
-      return jsonDecode(result.body);
-    }else{
-      throw Exception('Gagal mengedit data kategori barang');
+  Future editKategoriBarang(int id, String nama) async{
+    try{
+      var result = await http.post(Uri.parse("${apiUrl}barang/updateKB/$id"), body: {
+        "nama_kategori_barang" : nama,
+      });
+      if(result.statusCode == 200){
+        print('Data berhasil diedit');
+        return true;
+      }
+      return false;
+    } catch(e){
+      print(e.toString());
+      throw Exception('Gagal mengedit data');
     }
   }
 
