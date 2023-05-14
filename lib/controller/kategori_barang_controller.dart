@@ -49,14 +49,18 @@ class KategoriBarangController{
     }
   }
 
-  Future deleteKategoriBarang(KategoriBarangModel kategoriBarang) async{
-    var result = await http.post(Uri.parse("${apiUrl}barang/delete/{id}"), body: {
-      "nama_kategori_barang" : kategoriBarang.nama,
-    });
-    if(result.statusCode == 200){
-      return jsonDecode(result.body);
-    }else{
-      throw Exception('Gagal menghapus data ategori barang');
+  Future deleteKategoriBarang(int id) async{
+    try{
+      var result = await http.post(Uri.parse("${apiUrl}barang/deleteKB/$id"));
+      if(result.statusCode == 200){
+        return true;
+      }
+      return false;
     }
+    catch(e){
+      print(e.toString());
+      throw Exception('Gagal menghapus data');
+    }
+    
   }
 }
