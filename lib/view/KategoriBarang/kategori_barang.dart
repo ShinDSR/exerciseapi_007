@@ -31,6 +31,12 @@ class _KategoriBarangState extends State<KategoriBarang> {
     });
   }
 
+  void deleteDataBarang(KategoriBarangModel kategoriBarangModel){
+    setState(() {
+      listKategoriBarang.remove(kategoriBarangModel);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +50,31 @@ class _KategoriBarangState extends State<KategoriBarang> {
             return Card(
               child: ListTile(
                 title: Text(listKategoriBarang[index].nama),
-                trailing: IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const EditKategoriBarang(),));
-                  },
-                  icon: const Icon(Icons.edit),
-                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditKategoriBarang(
+                              kategoriNama1: listKategoriBarang[index].nama,
+                              id: listKategoriBarang[index].id,
+                            )
+                          )
+                        );
+                      }, icon: const Icon(Icons.edit)
+                    ),
+                    IconButton(onPressed: () async{
+                      kategoriBarangController.deleteKategoriBarang(listKategoriBarang[index].id).then((value) {
+                        setState(() {
+                          listKategoriBarang.removeAt(index);
+                        });
+                      });
+                    }, icon: const Icon(Icons.delete, color: Colors.red))
+                  ],
+                )
               ),
             );
           },
