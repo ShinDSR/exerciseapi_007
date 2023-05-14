@@ -19,11 +19,6 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
   final kategoriBarangController = KategoriBarangController();
   String? nama;
 
-  void editKategoriBarang() async{
-    KategoriBarangModel kategoriBarang = KategoriBarangModel(nama: nama!);
-    await kategoriBarangController.editKategoriBarang(kategoriBarang);
-  }
-
   @override
   Widget build(BuildContext context) {
     var formkey = GlobalKey<FormState>();
@@ -57,7 +52,7 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
               onPressed: () {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
-                  editKategoriBarang();
+                  kategoriBarangController.editKategoriBarang(widget.id!, nama!);
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
